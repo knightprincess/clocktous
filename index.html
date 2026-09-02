@@ -24,7 +24,7 @@
             align-items: center;
             gap: 40px;
             padding: 20px 30px;
-            background: /* rgba(255, 255, 255, 0.85)*/ #f5f6ee;
+            background: #f5f6ee;
             backdrop-filter: blur(10px);
             border-radius: 20px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
@@ -120,7 +120,7 @@
             <div class="heart">💕</div>
         </div>
 
-        <!-- Your Clock (Argentina Time) -->
+
         <div class="clock-box">
             <span class="label">Mica</span>
             <div class="time" id="my-time">--:--</div>
@@ -132,24 +132,19 @@
         function updateClocks() {
             const now = new Date();
 
-            
+           
             const myTimeOpts = { timeZone: 'America/Argentina/Buenos_Aires', hour: '2-digit', minute: '2-digit', hour12: false };
             const myDateOpts = { timeZone: 'America/Argentina/Buenos_Aires', weekday: 'short', month: 'short', day: 'numeric' };
-            
-           
-            const tatiTimeMs = now.getTime() + (11 * 60 * 60 * 1000);
-            const tatiDateObj = new Date(tatiTimeMs);
 
+            const tatiTimeOpts = { timeZone: 'Asia/Irkutsk', hour: '2-digit', minute: '2-digit', hour12: false };
+            const tatiDateOpts = { timeZone: 'Asia/Irkutsk', weekday: 'short', month: 'short', day: 'numeric' };
+
+            // Actualizar en pantalla
             document.getElementById('my-time').textContent = new Intl.DateTimeFormat([], myTimeOpts).format(now);
             document.getElementById('my-date').textContent = new Intl.DateTimeFormat([], myDateOpts).format(now);
 
-            // Format Tati using UTC to respect the shifted timestamp accurately
-            const tatiHour = String(tatiDateObj.getUTCHours()).padStart(2, '0');
-            const tatiMin = String(tatiDateObj.getUTCMinutes()).padStart(2, '0');
-            document.getElementById('tati-time').textContent = `${tatiHour}:${tatiMin}`;
-
-            const tatiDateOpts = { timeZone: 'UTC', weekday: 'short', month: 'short', day: 'numeric' };
-            document.getElementById('tati-date').textContent = new Intl.DateTimeFormat([], tatiDateOpts).format(tatiDateObj);
+            document.getElementById('tati-time').textContent = new Intl.DateTimeFormat([], tatiTimeOpts).format(now);
+            document.getElementById('tati-date').textContent = new Intl.DateTimeFormat([], tatiDateOpts).format(now);
         }
 
         updateClocks();
