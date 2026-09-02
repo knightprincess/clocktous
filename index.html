@@ -109,7 +109,6 @@
 <body>
 
     <div class="container">
-        <!-- Tati's Clock (Replace 'Asia/Tokyo' with her exact IANA time zone if different) -->
         <div class="clock-box">
             <span class="label">Tati</span>
             <div class="time" id="tati-time">--:--</div>
@@ -133,14 +132,11 @@
         function updateClocks() {
             const now = new Date();
 
-            // Your time (Argentina)
+            
             const myTimeOpts = { timeZone: 'America/Argentina/Buenos_Aires', hour: '2-digit', minute: '2-digit', hour12: false };
             const myDateOpts = { timeZone: 'America/Argentina/Buenos_Aires', weekday: 'short', month: 'short', day: 'numeric' };
             
-            // Tati's time (11 hours ahead of Argentina, e.g., AEDT/AEST depending on her location, adjust zone string if needed)
-            // Using a generic offset-safe approach or standard timezone. Let's use UTC+11 equivalent or explicit zone.
-            // If she is strictly +11 hours ahead of Buenos Aires (which is UTC-3), her zone is UTC+8 (like Perth/Singapore/Beijing) or similar.
-            // Let's calculate her time by adding 11 hours to your timestamp to ensure the exact 11-hour gap is respected.
+           
             const tatiTimeMs = now.getTime() + (11 * 60 * 60 * 1000);
             const tatiDateObj = new Date(tatiTimeMs);
 
